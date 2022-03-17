@@ -10,11 +10,11 @@ import plotly.graph_objs as go
 
 ###### Define your variables #####
 tabtitle = 'Titanic!'
-color1='#92A5E8'
-color2='#8E44AD'
-color3='#FFC300'
+color1= '#E389B9'   #92A5E8'
+color2= '#746AB0'
+color3= '#288BA8'
 sourceurl = 'https://www.kaggle.com/c/titanic'
-githublink = 'https://github.com/plotly-dash-apps/304-titanic-dropdown'
+githublink = 'https://github.com/tanvithakur94/304-titanic-dropdown' #changed the github link
 
 
 ###### Import a dataframe #######
@@ -52,19 +52,19 @@ def display_value(continuous_var):
     grouped_mean=df.groupby(['Cabin Class', 'Embarked'])[continuous_var].mean()
     results=pd.DataFrame(grouped_mean)
     # Create a grouped bar chart
-    mydata1 = go.Bar(
+    mydata1 = go.Pie(
         x=results.loc['first'].index,
         y=results.loc['first'][continuous_var],
         name='First Class',
         marker=dict(color=color1)
     )
-    mydata2 = go.Bar(
+    mydata2 = go.Pie(
         x=results.loc['second'].index,
         y=results.loc['second'][continuous_var],
         name='Second Class',
         marker=dict(color=color2)
     )
-    mydata3 = go.Bar(
+    mydata3 = go.Pie(
         x=results.loc['third'].index,
         y=results.loc['third'][continuous_var],
         name='Third Class',
