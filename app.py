@@ -78,7 +78,7 @@ def display_value(continuous_var):
         yaxis = dict(title = str(continuous_var)), # y-axis label
 
     )
-    fig = go.Figure(data=[mydata1, mydata2, mydata3], layout=mylayout)
+    fig = go.Figure(data=[mydata1, mydata2, mydata3], layout=mylayout, style={'backgroundColor':'#CCFFFF'})
     return fig
 
 
