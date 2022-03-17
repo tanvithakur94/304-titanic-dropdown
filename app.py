@@ -76,7 +76,6 @@ def display_value(continuous_var):
         title='Grouped bar chart',
         xaxis = dict(title = 'PClass'), # x-axis label
         yaxis = dict(title = str(continuous_var)), # y-axis label
-        style = {'backgroundColor':'#FFF8C6'}
     )
     fig = go.Figure(data=[mydata1, mydata2, mydata3], layout=mylayout)
     return fig
