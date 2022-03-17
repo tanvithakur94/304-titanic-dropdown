@@ -20,7 +20,8 @@ githublink = 'https://github.com/tanvithakur94/304-titanic-dropdown' #changed th
 ###### Import a dataframe #######
 df = pd.read_csv("https://raw.githubusercontent.com/austinlasseter/plotly_dash_tutorial/master/00%20resources/titanic.csv")
 df['Female']=df['Sex'].map({'male':0, 'female':1})
-df['Cabin Class'] = df['Pclass'].map({1:'first', 2: 'second', 3:'third'})
+df['Port of Embarkation'] = df['Embarked'].map({'Queenstown':'Queenstown','Southampton':'Southampton','Cherbourg': 'Cherbourg'})
+#df['Cabin Class'] = df['Pclass'].map({1:'first', 2: 'second', 3:'third'})
 variables_list=['Survived', 'Female', 'Fare', 'Age']
 
 ########### Initiate the app
@@ -49,31 +50,31 @@ app.layout = html.Div([
 @app.callback(Output('display-value', 'figure'),
               [Input('dropdown', 'value')])
 def display_value(continuous_var):
-    grouped_mean=df.groupby(['Cabin Class', 'Embarked'])[continuous_var].mean()
+    grouped_mean=df.groupby(['Port of Embarkation', 'Pclass'])[continuous_var].mean()
     results=pd.DataFrame(grouped_mean)
     # Create a grouped bar chart
-    mydata1 = go.Pie(
-        x=results.loc['first'].index,
-        y=results.loc['first'][continuous_var],
-        name='First Class',
+    mydata1 = go.Bar(
+        x=results.loc['Queenstown'].index,
+        y=results.loc['Queenstown'][continuous_var],
+        name='Queenstown',
         marker=dict(color=color1)
     )
-    mydata2 = go.Pie(
-        x=results.loc['second'].index,
-        y=results.loc['second'][continuous_var],
-        name='Second Class',
+    mydata2 = go.Bar(
+        x=results.loc['Southampton'].index,
+        y=results.loc['Southampton'][continuous_var],
+        name='Southampton',
         marker=dict(color=color2)
     )
-    mydata3 = go.Pie(
-        x=results.loc['third'].index,
-        y=results.loc['third'][continuous_var],
-        name='Third Class',
+    mydata3 = go.Bar(
+        x=results.loc['Cherbourg'].index,
+        y=results.loc['Cherbourg'][continuous_var],
+        name='Cherbourg',
         marker=dict(color=color3)
     )
 
     mylayout = go.Layout(
         title='Grouped bar chart',
-        xaxis = dict(title = 'Port of Embarkation'), # x-axis label
+        xaxis = dict(title = 'PClass'), # x-axis label
         yaxis = dict(title = str(continuous_var)), # y-axis label
 
     )
