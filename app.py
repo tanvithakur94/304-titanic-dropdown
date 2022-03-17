@@ -34,7 +34,7 @@ app.title=tabtitle
 app.layout = html.Div([
     html.H3('Choose a continuous variable for summary statistics:', style={'backgroundColor':'#FFCCFF'}),
     dcc.Dropdown(
-        id='dropdown',
+        id='dropdown',style={'backgroundColor':'#CCCCFF'},
         options=[{'label': i, 'value': i} for i in variables_list],
         value=variables_list[0]
     ),
